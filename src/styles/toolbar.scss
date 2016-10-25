@@ -1,0 +1,29 @@
+@import 'theme';
+
+.toolbar {
+  display: flex;
+  flex-direction: row;
+  padding: 8px;
+
+  button, button:focus, button:hover {
+    outline: none;
+    flex: 1 1 auto;
+    font-size: 10vw;
+    background-color: transparent;
+    border: 2px solid $theme-primary;
+    color: $theme-primary;
+    font-weight: 100;
+
+    &:not(:last-of-type) {
+      border-right: 0px;
+    }
+  }
+
+  button:active {
+    background-color: $theme-primary;
+  }
+
+  button:hover {
+    background-color: $theme-primary;
+  }
+}

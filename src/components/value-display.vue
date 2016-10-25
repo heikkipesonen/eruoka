@@ -6,7 +6,14 @@
 <script>
 export default {
   props: {
-    model: {
+    decimals: {
+      type: Number,
+      default () {
+        return 2
+      }
+    },
+
+    value: {
       type: Number,
       default () {
         return 0
@@ -16,7 +23,7 @@ export default {
 
   computed: {
     viewValue () {
-      return this.model.toFixed(2).replace('.', ',')
+      return this.value.toFixed(this.decimals).replace('.', ',')
     }
   }
 }
@@ -27,5 +34,6 @@ export default {
     justify-content: center;
     align-items: center;
     font-size: 10vw;
+    font-weight: 100;
   }
 </style>

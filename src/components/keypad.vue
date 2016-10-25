@@ -1,10 +1,9 @@
 <template>
-  <div :class="{'keypad-wrapper': true, 'keypad-open': open}">
-    <value-display :model="value"></value-display>
+  <div class="keypad-wrapper">
     <div class="key-row" v-for="row in keys">
-      <div class="key" v-for="key in row" @click="keyPress(key)" :class="key.classNames">
+      <a class="key" v-for="key in row" @click="keyPress(key)" :class="key.classNames">
         {{key.label}}
-      </div>
+      </a>
     </div>
   </div>
 </template>
@@ -18,12 +17,18 @@ export default {
     valueDisplay
   },
 
-  props: {
-    open: {
-      type: Boolean
-    },
+  data () {
+    return {
+      model: ''
+    }
+  },
 
-    value: {},
+  props: {
+    value: {
+      default () {
+        return 0
+      }
+    },
 
     keys: {
       type: Array,
@@ -78,25 +83,18 @@ export default {
               classNames: 'width-2'
             },
             {
-              unique: true,
-              value: ',',
-              label: ','
+              value: '00',
+              label: '00',
+              classNames: 'width'
             }
           ],
           [
             {
-              action: true,
-              value: 'cancel',
-              label: 'cancel'
-            },
-            {
-              action: true,
-              value: 'clear',
+              action: 'clear',
               label: 'clear'
             },
             {
-              action: true,
-              value: 'complete',
+              action: 'complete',
               label: 'ok'
             }
           ]
@@ -106,56 +104,52 @@ export default {
   },
 
   computed: {
-    viewValue: {
-      set (newValue) {
-        console.log(newValue)
-      },
-
-      get () {
-        return this.value.toFixed(2)
-      }
+    viewValue () {
+      return parseFloat(this.model) / 100 || 0
     }
   },
 
   methods: {
     keyPress (key) {
-      console.log(this.value)
-
-      if (!key.action) {
-        if (!key.unique || this.viewValue.indexOf(key.value) < 0) {
-          console.log(key.value)
-          this.viewValue += key.value.toString()
-        }
-      } else {
-        this[key.value](key)
+      if (!key.action && (!key.unique || this.model.indexOf(key.value) < 0)) {
+        this.model += '' + key.value
+      } else if (key.action) {
+        this[key.action](key)
       }
     },
 
     clear () {
-      this.viewValue = ''
+      this.model = ''
     },
 
     complete () {
-      this.$emit('kissa', this.viewValue)
+      this.$emit('complete', this.viewValue)
+    }
+  },
+
+  watch: {
+    value () {
+      console.log(this.model, this.value)
+      // this.model = (Math.round(this.value * 100)).toString()
     },
 
-    cancel () {
-
+    model () {
+      this.$emit('input', this.viewValue)
     }
   }
 }
 </script>
 <style lang="scss" scoped>
-.keypad-wrapper {
-  position: fixed;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  display: flex;
-  flex-direction: column;
-  height: 80vh;
-  background-color: rgb(65, 158, 244);
-  box-shadow: 0px 0px 100px -10px rgba(0,0,0,0.3);
+  @import '../styles/theme';
+  $keypad-color: white;
+  $keypad-active-color: rgba(255,255,255, 0.1);
+  $keypad-border-color: rgba(255,255,255, 0.3);
+
+  .keypad-wrapper {
+    display: flex;
+    flex: 1 0 auto;
+    flex-direction: column;
+  }
 
   .key-row {
     display: flex;
@@ -167,11 +161,15 @@ export default {
     display: flex;
     justify-content: center;
     align-items: center;
-    border: 1px solid rgba(255,255,255,0.2);
-    color: white;
+    border: 1px solid $keypad-border-color;
+    color: $keypad-color;
     font-size: 10vw;
-    font-weight: 800;
+    font-weight: 100;
     flex: 1 1 33%;
+
+    &:active {
+      background-color: $keypad-active-color;
+    }
 
     &.width-2 {
       flex-basis: 66%;
@@ -183,5 +181,4 @@ export default {
     height: 20vh;
     color: white;
   }
-}
 </style>

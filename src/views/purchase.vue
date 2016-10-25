@@ -1,34 +1,66 @@
 <template>
   <view-area>
-    <value-display :model="value"></value-display>
-    <keypad v-model="value"></keypad>
+    <div class="container-absolute layout-column">
+      <div class="layout-column layout-center flex">
+        <div @click="openEditor(item)" v-for="item in values">
+          <value-display v-model="item.value"></value-display>
+        </div>
+      </div>
+      <div class="toolbar dark">
+        <button>Add</button>
+      </div>
+    </div>
+
+    <item-editor :open="editorOpen" v-model="currentItem" v-on:complete="closeEditor"></item-editor>
   </view-area>
 </template>
 <script>
 import viewArea from '../components/view'
 import valueDisplay from '../components/value-display'
 import keypad from '../components/keypad'
+import itemEditor from '../components/item-editor'
+import tagSelect from '../components/tag-select'
 
 export default {
   components: {
     viewArea,
     valueDisplay,
-    keypad
+    keypad,
+    tagSelect,
+    itemEditor
   },
 
   data () {
     return {
-      value: 0
+      tagSelectOpen: false,
+      editorOpen: false,
+      currentItem: {},
+      values: [
+        {
+          value: 1
+        },
+        {
+          value: 2
+        }
+      ]
     }
   },
 
   methods: {
-    addValue (kissa) {
-      console.log(kissa)
+    closeEditor (value) {
+      this.currentItem = {}
+      this.editorOpen = false
+    },
+
+    openEditor (item) {
+      this.currentItem = item
+      this.editorOpen = true
     }
   }
 }
 </script>
 <style lang="scss">
-
+.value-display {
+  color: rgb(215, 34, 132);
+}
 </style>

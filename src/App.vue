@@ -8,5 +8,7 @@ export default {
 </script>
 <style lang="scss">
 @import 'styles/reset';
+@import 'styles/layout';
 @import 'styles/texts';
+@import 'styles/toolbar';
 </style>

@@ -1,0 +1,36 @@
+$grid-gutter-width: 16px;
+
+.row {
+  margin-left: -$grid-gutter-width / 2;
+  margin-right: -$grid-gutter-width / 2;
+}
+
+.column {
+  padding-left: -$grid-gutter-width / 2;
+  padding-right: -$grid-gutter-width / 2;
+}
+
+.flex {
+  flex: 1 1 auto;
+}
+
+.layout-column {
+  display: flex;
+  flex-direction: column;
+}
+
+.layout-row {
+  display: flex;
+  flex-direction: row;
+}
+
+.layout-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.container-absolute {
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+}
