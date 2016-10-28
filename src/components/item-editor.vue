@@ -1,6 +1,9 @@
 <template>
   <bottom-sheet :open="open">
     <value-display v-model="value.value"></value-display>
+    <value-display v-model="value.value"></value-display>
+    <value-display v-model="value.value"></value-display>
+    <value-display v-model="value.value"></value-display>
     <keypad v-model="value.value" v-on:complete="complete"></keypad>
   </bottom-sheet>
 </template>
@@ -41,8 +44,5 @@ export default {
 .value-display {
   padding: 16px 0;
   color: white;
-}
-.bottom-sheet {
-  background-color: $theme-primary;
 }
 </style>

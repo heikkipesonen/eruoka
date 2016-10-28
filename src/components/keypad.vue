@@ -124,12 +124,13 @@ export default {
 
     complete () {
       this.$emit('complete', this.viewValue)
+      this.clear()
     }
   },
 
   watch: {
     value () {
-      console.log(this.model, this.value)
+      this.model = this.value.toFixed(2).replace('.', '')
       // this.model = (Math.round(this.value * 100)).toString()
     },
 

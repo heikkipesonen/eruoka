@@ -4,10 +4,20 @@ import Vue from 'vue'
 import store from './vuex/store'
 import router from './router'
 import App from './App'
+require('./directives/scroll-y')
 
+import FastClick from 'fastClick'
 /* eslint-disable no-new */
 new Vue({
   store,
   router,
   render: h => h(App)
 }).$mount('#app')
+
+document.body.addEventListener('touchmove', (evt) => {
+  evt.preventDefault()
+})
+
+document.addEventListener('DOMContentLoaded', () => {
+  FastClick.attach(document.body)
+}, false)

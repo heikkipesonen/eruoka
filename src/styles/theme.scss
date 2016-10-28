@@ -1,1 +1,7 @@
-$theme-primary: rgb(215, 34, 132);
+$theme-primary: rgb(215, 34, 34);
+$theme-primary-text: rgb(255,255,255);
+
+.primary {
+  color: $theme-primary-text;
+  border-color: $theme-primary-text;
+}

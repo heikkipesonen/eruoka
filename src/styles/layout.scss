@@ -10,22 +10,30 @@ $grid-gutter-width: 16px;
   padding-right: -$grid-gutter-width / 2;
 }
 
+.container {
+  position: relative;
+}
+
 .flex {
+  position: relative;
   flex: 1 1 auto;
 }
 
 .layout-column {
   display: flex;
+  position: relative;
   flex-direction: column;
 }
 
 .layout-row {
   display: flex;
+  position: relative;
   flex-direction: row;
 }
 
 .layout-center {
   display: flex;
+  position: relative;
   justify-content: center;
   align-items: center;
 }
