@@ -31,9 +31,7 @@ export default {
 <style lang="scss" scoped>
   .value-display {
     display: flex;
-    justify-content: center;
     align-items: center;
-    font-size: 10vw;
     font-weight: 100;
   }
 </style>

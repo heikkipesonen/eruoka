@@ -1,9 +1,9 @@
 <template>
-  <view-area background-image="../static/bg.jpg">
+  <view-area>
     <div class="flex">
       <div class="container-absolute" v-scrolly>
-        <ul class="layout-column item-list">
-          <li @click="openEditor(item)" v-for="item in list" class="list-item">
+        <ul class="layout-column list">
+          <li @click="openEditor(item)" v-for="item in list" class="item">
             <value-display v-model="item.value"></value-display>
           </li>
         </ul>
@@ -81,23 +81,8 @@ export default {
 <style lang="scss" scoped>
 @import '../styles/theme';
 
-.item-list {
-  .list-item {
-    padding: 16px 8px;
-
-    &:not(:last-of-type) {
-      border-bottom: 1px solid;
-      border-color: fade_out($theme-primary-text, 0.7);
-    }
-  }
-
-  .value-display {
-    justify-content: flex-start;
-    text-shadow: 0px 0px 15px rgba(0,0,0, 0.5);
-    font-size: 2em;
-    font-weight: 800;
-    color: $theme-primary-text
-  }
+.list {
+  color: white;
 }
 
 </style>

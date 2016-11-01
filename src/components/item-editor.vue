@@ -1,8 +1,6 @@
 <template>
   <bottom-sheet :open="open">
-    <value-display v-model="value.value"></value-display>
-    <value-display v-model="value.value"></value-display>
-    <value-display v-model="value.value"></value-display>
+    <tag-select v-model="value.tags"></tag-select>
     <value-display v-model="value.value"></value-display>
     <keypad v-model="value.value" v-on:complete="complete"></keypad>
   </bottom-sheet>
@@ -11,9 +9,11 @@
 import valueDisplay from './value-display'
 import bottomSheet from './bottom-sheet'
 import keypad from './keypad'
+import tagSelect from './tag-select'
 
 export default {
   components: {
+    tagSelect,
     valueDisplay,
     bottomSheet,
     keypad
@@ -23,6 +23,7 @@ export default {
     open: {
       type: Boolean
     },
+
     value: {
       type: Object,
       default () {
@@ -44,5 +45,7 @@ export default {
 .value-display {
   padding: 16px 0;
   color: white;
+  justify-content: center;
+  font-size: 10vw;  
 }
 </style>

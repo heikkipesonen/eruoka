@@ -1,6 +1,17 @@
 <template>
-  <div :class="{'bottom-sheet': true, 'sheet-open': open}" :style="viewStyle">
-    <div class="sheet-container" :style="containerStyle">
+  <div :class="{'bottom-sheet': true, 'sheet-open': open}">
+    <div class="background-container">
+      <svg width="100%" height="100%" viewBox="0 0 375 668" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+          <defs>
+              <radialGradient cx="55.5157289%" cy="15.1920852%" fx="55.5157289%" fy="15.1920852%" r="81.2575576%" id="radialGradient-1">
+                  <stop stop-color="#F76036" offset="0%"></stop>
+                  <stop stop-color="#B61919" offset="100%"></stop>
+              </radialGradient>
+          </defs>
+          <rect id="Rectangle" stroke="none" fill="url(#radialGradient-1)" fill-rule="evenodd" x="0" y="0" width="375" height="667"></rect>
+      </svg>
+    </div>
+    <div class="sheet-container">
       <slot></slot>
     </div>
   </div>
@@ -16,14 +27,14 @@ export default {
     backgroundImage: {
       type: String,
       default () {
-        return '../static/bg-blur.jpg'
+        return ''
       }
     },
 
     backgroundColor: {
-      type: String,
+      type: Array,
       default () {
-        return 'rgba(119, 185, 255, 0.6)'
+        return ['rgba(68, 154, 246, 0.93)', 'rgba(59, 108, 252, 0.88)']
       }
     }
   },
@@ -36,7 +47,7 @@ export default {
     },
     containerStyle () {
       return {
-        'background': `linear-gradient(to bottom, ${this.backgroundColor} 0%,rgba(255, 255, 255, 0) 100%)`
+        'background': `linear-gradient(to bottom, ${this.backgroundColor[0]} 0%,  ${this.backgroundColor[1]} 100%)`
       }
     }
   }
@@ -71,6 +82,7 @@ export default {
     display: flex;
     flex-direction: column;
     overflow-y: auto;
+    z-index: 1;
   }
 }
 </style>

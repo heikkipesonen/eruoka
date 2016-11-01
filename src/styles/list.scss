@@ -1,0 +1,10 @@
+.list {
+  list-style-type: none;
+  color: inherit;
+
+  .item {
+    padding: 16px 8px;
+    color: inherit;
+    font-size: 12pt;
+  }
+}

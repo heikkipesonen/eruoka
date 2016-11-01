@@ -1,39 +1,31 @@
 <template>
-  <bottom-sheet :open="open">
-    {{ newTag }}
-    <input-container label="kissa" v-model="newTag"></input-container>
+  <div class="layout-column">
+    <div class="flex tags-list">
 
-    <div class="flex"></div>
-
-    <div class="toolbar">
-      <button>k</button>
-      <button>e</button>
     </div>
-  </bottom-sheet>
+  </div>
 </template>
 
 <script>
-import bottomSheet from './bottom-sheet'
 import inputContainer from './input-container'
 
 export default {
   components: {
-    bottomSheet,
     inputContainer
   },
 
   props: {
-    open: {
-      type: Boolean,
+    value: {
+      type: Array,
       default () {
-        return false
+        return []
       }
     }
   },
 
   data () {
     return {
-      newTag: '',
+      search: '',
       tags: []
     }
   }
@@ -41,4 +33,15 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.tags-list {
+  min-height: 40vh;
+}
+
+.add-button {
+  flex: 0;
+  min-width: 64px;
+  margin: 8px;
+  color: white;
+  border-color: white;
+}
 </style>

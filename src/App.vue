@@ -11,4 +11,5 @@ export default {
 @import 'styles/layout';
 @import 'styles/texts';
 @import 'styles/toolbar';
+@import 'styles/list';
 </style>
