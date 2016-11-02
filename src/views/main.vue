@@ -1,6 +1,6 @@
 <template>
   <view-area>
-    <Chart v-model="value"></Chart>
+    <Chart v-model="value" class="main-chart"></Chart>
   </view-area>
 </template>
 <script>
@@ -15,11 +15,14 @@ export default {
 
   data () {
     return {
-      value: 10
+      value: 75
     }
   }
 }
 </script>
 <style lang="scss" scoped>
-
+.main-chart {
+  padding: 16px;
+  color: white;
+}
 </style>
